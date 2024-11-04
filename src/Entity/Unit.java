@@ -153,7 +153,7 @@ public abstract class Unit  {
 
     public void loadSprites(String folderPath){}
 
-    public BufferedImage setUp(String imagePath) {
+    public BufferedImage setUp(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage scaledImage = null;
 
@@ -164,7 +164,7 @@ public abstract class Unit  {
                 throw new IllegalArgumentException("Resource not found: " + imagePath + ".png");
             }
             scaledImage = ImageIO.read(input);
-            scaledImage = uTool.scaleImage(scaledImage, gamePanel.TileSize, gamePanel.TileSize);
+            scaledImage = uTool.scaleImage(scaledImage,width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -356,7 +356,7 @@ public abstract class Unit  {
                     }
                     break;
                 default:
-                    image = facingDirection == Direction.RIGHT ? idleRight[spriteIndex] : idleLeft[spriteIndex];
+                    image = idleRight[spriteIndex];
             }
         }
 
@@ -386,8 +386,8 @@ public abstract class Unit  {
             dyingAnimation(g2);
         }
 
-        if (screenX + gamePanel.TileSize > 0 && screenX < gamePanel.screenWidth / gamePanel.scaleFactor &&
-                screenY + gamePanel.TileSize > 0 && screenY < gamePanel.screenHeight / gamePanel.scaleFactor) {
+        if (screenX + (gamePanel.TileSize * 4)> 0 && screenX < (gamePanel.screenWidth * 4)/ gamePanel.scaleFactor &&
+                screenY + (gamePanel.TileSize * 4) > 0 && screenY < (gamePanel.screenHeight * 4) / gamePanel.scaleFactor) {
             g2.drawImage(image, screenX, screenY, null);
         }
 

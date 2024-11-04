@@ -203,7 +203,7 @@ public class GamePanel extends JPanel implements Runnable {
 
             renderList.add(player);
             for (int i = 0; i < enemy.length; i++){
-                if(enemy[i] != null) {
+                if(enemy[i] != null && i != 4) {
                     renderList.add(enemy[i]);
                 }
             }
@@ -244,6 +244,8 @@ public class GamePanel extends JPanel implements Runnable {
                     renderList.get(i).draw(g2);
                 }
             }
+
+            enemy[4].draw(g2);
 
             renderList.clear();
 

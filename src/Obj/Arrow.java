@@ -32,13 +32,13 @@ public class Arrow extends Projectile {
         idleBowLeft = new BufferedImage[6];
 
         for(int i = 0; i < 10; i++) {
-            walkBowRightSprites[i] = setUp(folderPath + "/ArrowR" + (i % 3 + 1));
-            walkBowLeftSprites[i] = setUp(folderPath + "/ArrowL" + (i % 3 + 1));
+            walkBowRightSprites[i] = setUp(folderPath + "/ArrowR" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
+            walkBowLeftSprites[i] = setUp(folderPath + "/ArrowL" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
         }
 
         for(int i = 0; i < 6; i++) {
-            idleBowRight[i] = setUp(folderPath + "/ArrowR" + (i % 3 + 1));
-            idleBowLeft[i] = setUp(folderPath + "/ArrowL" + (i % 3 + 1));
+            idleBowRight[i] = setUp(folderPath + "/ArrowR" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowLeft[i] = setUp(folderPath + "/ArrowL" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 

@@ -12,9 +12,9 @@ public class PlayerHealth extends Unit {
     public PlayerHealth(GamePanel gamePanel) {
         super((gamePanel));
         name = "PlayerHealth";
-        image[0] = setUp("/Obj/HealthBar" + 1 );
+        image[0] = setUp("/Obj/HealthBar" + 1 , gamePanel.TileSize, gamePanel.TileSize);
         for(int i = 1; i < 11; i++) {
-            image[i] = setUp("/Obj/HealthBar" + (i+1));
+            image[i] = setUp("/Obj/HealthBar" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 

@@ -26,6 +26,7 @@ public class Sounds {
         soundURL[8] = getClass().getResource("/Sound/esc.wav");
         soundURL[9] = getClass().getResource("/Sound/SwapWeapon.wav");
         soundURL[10] = getClass().getResource("/Sound/HealingSound.wav");
+        soundURL[11] = getClass().getResource("/Sound/eerieHorn.wav");
 
     }
 

@@ -14,7 +14,7 @@ public class Bow extends Unit {
         super(gamePanel);
         name = "Bow";
         behavior = "idle";
-        image = setUp("/Obj/Bow");
+        image = setUp("/Obj/Bow", gamePanel.TileSize, gamePanel.TileSize);
         facingDirection = Direction.RIGHT;
         equipWeapon = Equip.BOW; //idk other way to do rendering order
         collision = true;
@@ -25,7 +25,7 @@ public class Bow extends Unit {
     public void loadSprites(String folderPath) {
         idleBowRight = new BufferedImage[6];
         for(int i = 0; i < 6; i++) {
-            idleBowRight[i] = setUp(folderPath + "/Bow");
+            idleBowRight[i] = setUp(folderPath + "/Bow", gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 }

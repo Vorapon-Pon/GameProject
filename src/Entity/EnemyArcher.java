@@ -197,15 +197,15 @@ public class EnemyArcher extends Unit {
 
         // Load each frame
         for (int i = 0; i < 10; i++) {
-            walkBowLeftSprites[i] = setUp(folderPath + "/EnemyBowRunLeft" + (i+1));
-            walkBowRightSprites[i] = setUp(folderPath + "/EnemyBowRunRight" + (i+1));
+            walkBowLeftSprites[i] = setUp(folderPath + "/EnemyBowRunLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            walkBowRightSprites[i] = setUp(folderPath + "/EnemyBowRunRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
 
         for(int i = 0; i < 6; i++) {
-            AttackBowR[i] = setUp(folderPath + "/EnemyBowAttackRight" + (i+1));
-            AttackBowL[i] = setUp(folderPath + "/EnemyBowAttackLeft" + (i+1));
-            idleBowRight[i] = setUp(folderPath + "/EnemyBowIdleR" + (i+1));
-            idleBowLeft[i] = setUp(folderPath + "/EnemyBowIdleL" + (i+1));
+            AttackBowR[i] = setUp(folderPath + "/EnemyBowAttackRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            AttackBowL[i] = setUp(folderPath + "/EnemyBowAttackLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowRight[i] = setUp(folderPath + "/EnemyBowIdleR" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowLeft[i] = setUp(folderPath + "/EnemyBowIdleL" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 

@@ -29,7 +29,7 @@ public class Player extends Unit {
         maxArrow = 32;
         arrow = 3;
         potion = 0;
-        this.defaultSpeed = 4;
+        this.defaultSpeed = 10;
         this.speed = defaultSpeed;
         projectile = new Arrow(gamePanel);
 
@@ -110,21 +110,21 @@ public class Player extends Unit {
 
         // Load each frame
         for (int i = 0; i < 10; i++) {
-            walkLeftSprites[i] = setUp(folderPath + "/SwordManRunLeft" + (i+1));
-            walkRightSprites[i] = setUp(folderPath + "/SwordManRunRight_" + (i+1));
-            walkBowLeftSprites[i] = setUp(folderPath + "/SwordManBowRunLeft" + (i+1));
-            walkBowRightSprites[i] = setUp(folderPath + "/SwordManBowRunRight" + (i+1));
+            walkLeftSprites[i] = setUp(folderPath + "/SwordManRunLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            walkRightSprites[i] = setUp(folderPath + "/SwordManRunRight_" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            walkBowLeftSprites[i] = setUp(folderPath + "/SwordManBowRunLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            walkBowRightSprites[i] = setUp(folderPath + "/SwordManBowRunRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
 
         for(int i = 0; i < 6; i++) {
-            AttackR[i] = setUp(folderPath + "/SwordManAttackRight" + (i+1));
-            AttackL[i] = setUp(folderPath + "/SwordManAttackLeft" + (i+1));
-            AttackBowR[i] = setUp(folderPath + "/SwordManAttackBowRight" + (i+1));
-            AttackBowL[i] = setUp(folderPath + "/SwordManAttackBowLeft" + (i+1));
-            idleRight[i] = setUp(folderPath + "/SwordManIdle_" + (i+1));
-            idleLeft[i] = setUp(folderPath + "/SwordManIdleIdleLeft" + (i+1));
-            idleBowRight[i] = setUp(folderPath + "/SwordManIdleBowR" + (i+1));
-            idleBowLeft[i] = setUp(folderPath + "/SwordManIdleBowL" + (i+1));
+            AttackR[i] = setUp(folderPath + "/SwordManAttackRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            AttackL[i] = setUp(folderPath + "/SwordManAttackLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            AttackBowR[i] = setUp(folderPath + "/SwordManAttackBowRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            AttackBowL[i] = setUp(folderPath + "/SwordManAttackBowLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleRight[i] = setUp(folderPath + "/SwordManIdle_" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleLeft[i] = setUp(folderPath + "/SwordManIdleIdleLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowRight[i] = setUp(folderPath + "/SwordManIdleBowR" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowLeft[i] = setUp(folderPath + "/SwordManIdleBowL" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 

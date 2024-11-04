@@ -31,13 +31,13 @@ public class EnemyArrow extends Projectile {
         idleBowLeft = new BufferedImage[6];
 
         for(int i = 0; i < 10; i++) {
-            walkBowRightSprites[i] = setUp(folderPath + "/EnemyArrowR" + (i % 3 + 1));
-            walkBowLeftSprites[i] = setUp(folderPath + "/EnemyArrowL" + (i % 3 + 1));
+            walkBowRightSprites[i] = setUp(folderPath + "/EnemyArrowR" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
+            walkBowLeftSprites[i] = setUp(folderPath + "/EnemyArrowL" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
         }
 
         for(int i = 0; i < 6; i++) {
-            idleBowRight[i] = setUp(folderPath + "/EnemyArrowR" + (i % 3 + 1));
-            idleBowLeft[i] = setUp(folderPath + "/EnemyArrowL" + (i % 3 + 1));
+            idleBowRight[i] = setUp(folderPath + "/EnemyArrowR" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowLeft[i] = setUp(folderPath + "/EnemyArrowL" + (i % 3 + 1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 }

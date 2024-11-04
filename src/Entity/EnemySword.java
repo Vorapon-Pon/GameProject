@@ -145,16 +145,16 @@ public class EnemySword extends Unit {
 
         // Load each frame
         for (int i = 0; i < 10; i++) {
-            walkLeftSprites[i] = setUp(folderPath + "/EnemySwordRunLeft" + (i+1));
-            walkRightSprites[i] = setUp(folderPath + "/EnemySwordRunRight" + (i+1));
+            walkLeftSprites[i] = setUp(folderPath + "/EnemySwordRunLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            walkRightSprites[i] = setUp(folderPath + "/EnemySwordRunRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
 
         }
 
         for(int i = 0; i < 6; i++) {
-            AttackR[i] = setUp(folderPath + "/EnemySwordAttackRight" + (i+1));
-            AttackL[i] = setUp(folderPath + "/EnemySwordAttackLeft" + (i+1));
-            idleRight[i] = setUp(folderPath + "/SwordEnemyIdleIdleRight" + (i+1));
-            idleLeft[i] = setUp(folderPath + "/SwordIdleIdleLeft" + (i+1));
+            AttackR[i] = setUp(folderPath + "/EnemySwordAttackRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            AttackL[i] = setUp(folderPath + "/EnemySwordAttackLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleRight[i] = setUp(folderPath + "/SwordEnemyIdleIdleRight" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleLeft[i] = setUp(folderPath + "/SwordIdleIdleLeft" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 

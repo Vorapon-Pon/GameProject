@@ -2,6 +2,8 @@ package Main;
 
 import Entity.EnemyArcher;
 import Entity.EnemySword;
+import Entity.StatueHitZone;
+import Entity.Statue;
 import Obj.*;
 
 public class Asset {
@@ -35,6 +37,10 @@ public class Asset {
         gamePanel.obj[5] = new Campfire(gamePanel);
         gamePanel.obj[5].worldX = gamePanel.TileSize * 6;
         gamePanel.obj[5].worldY = gamePanel.TileSize * 22;
+
+        gamePanel.obj[6] = new wkey(gamePanel);
+        gamePanel.obj[6].worldX = gamePanel.TileSize * 6;
+        gamePanel.obj[6].worldY = gamePanel.TileSize * 20;
     }
 
     public void setEnemy(){
@@ -50,5 +56,13 @@ public class Asset {
         gamePanel.enemy[2] = new EnemyArcher(gamePanel);
         gamePanel.enemy[2].worldX = gamePanel.TileSize * 18 ;
         gamePanel.enemy[2].worldY = gamePanel.TileSize * 23;
+
+        gamePanel.enemy[3] = new StatueHitZone(gamePanel);
+        gamePanel.enemy[3].worldX = gamePanel.TileSize * 40;
+        gamePanel.enemy[3].worldY = gamePanel.TileSize * 18;
+
+        gamePanel.enemy[4] = new Statue(gamePanel);
+        gamePanel.enemy[4].worldX = gamePanel.TileSize * 40;
+        gamePanel.enemy[4].worldY = gamePanel.TileSize * 14;
     }
 }
