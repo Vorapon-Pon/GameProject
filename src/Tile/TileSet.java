@@ -47,8 +47,6 @@ public class TileSet {
         for(int i = 17; i < 20; i++) {
             setUp(i,"Boderbottom"+(i - 16), true);
         }
-
-        for(int i = 0; i < )
     }
 
     public void draw(Graphics2D g2) {

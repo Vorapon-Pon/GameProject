@@ -355,6 +355,8 @@ public abstract class Unit  {
                         image = facingDirection == Direction.RIGHT ? idleBowRight[spriteIndex % 6] : idleBowLeft[spriteIndex % 6];
                     }
                     break;
+                default:
+                    image = facingDirection == Direction.RIGHT ? idleRight[spriteIndex] : idleLeft[spriteIndex];
             }
         }
 

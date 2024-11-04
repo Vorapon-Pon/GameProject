@@ -89,11 +89,13 @@ public class CollisionChecker {
                 }
 
                 if(ent.collideBox.intersects(gamePanel.obj[i].collideBox)) {
-                    if(gamePanel.obj[i].collision) {
-                        ent.collisionOn = true;
-                    }
                     if(player) {
                         index = i;
+                        if(gamePanel.obj[i].collision) {
+                            ent.collisionOn = true;
+                        }
+                    }else {
+                        ent.collisionOn = false; // prevent unit stuck add the item obj
                     }
                 }
 
