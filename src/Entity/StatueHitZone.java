@@ -20,8 +20,9 @@ public class StatueHitZone extends Unit {
         defaultSpeed = 0;
         damage = 15;
         speed = defaultSpeed;
-        maxHealth = 500;
+        maxHealth = 1000;
         health = maxHealth;
+        statue = true;
 
         loadSprites("/Enemy");
     }

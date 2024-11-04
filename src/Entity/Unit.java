@@ -35,11 +35,12 @@ public abstract class Unit  {
     public int useArrow;
     public boolean isInvincible = false;
     public int type; // check unit type player enemy etc
-    protected boolean healthBarOn = false;
-    protected int healthBarCounter = 0;
+    public boolean healthBarOn = false;
+    public int healthBarCounter = 0;
     public Projectile projectile;
     public boolean onPath = false;
     public boolean knockback = false;
+    public boolean statue;
 
 
     //collision
@@ -289,8 +290,8 @@ public abstract class Unit  {
     }
 
     public void draw(Graphics2D g2) {
-        int screenX = worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-        int screenY = worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+        int screenX = getScreenX();
+        int screenY = getScreenY();
 
         // Only draw tiles that are within the screen bounds
         BufferedImage image = null;
@@ -360,23 +361,6 @@ public abstract class Unit  {
             }
         }
 
-        if(type == 2 && healthBarOn) {
-            double oneScale = (double)gamePanel.TileSize/maxHealth;
-            double hpBarValue = oneScale*health;
-
-            g2.setColor(new Color(50,50,50));
-            g2.fillRect(screenX-2,screenY - 22, gamePanel.TileSize / 2 + 5,9);
-
-            g2.setColor(new Color(255,0,30));
-            g2.fillRect(screenX,screenY - 20, (int) hpBarValue / 2,5);
-
-            healthBarCounter++;
-            if(healthBarCounter > 600) {
-                healthBarOn = false;
-                healthBarCounter = 0;
-            }
-        }
-
         if(isInvincible) {
             healthBarOn = true;
             healthBarCounter = 0;
@@ -386,14 +370,23 @@ public abstract class Unit  {
             dyingAnimation(g2);
         }
 
-        if (screenX + (gamePanel.TileSize * 4)> 0 && screenX < (gamePanel.screenWidth * 4)/ gamePanel.scaleFactor &&
-                screenY + (gamePanel.TileSize * 4) > 0 && screenY < (gamePanel.screenHeight * 4) / gamePanel.scaleFactor) {
+        if (inFrame(screenX,screenY)) {
             g2.drawImage(image, screenX, screenY, null);
         }
 
         g2.drawRect(screenX , screenY , collideBox.width, collideBox.height);// draw collideBOx
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+    }
+
+    public boolean inFrame(int screenX, int screenY) {
+        boolean inframe = false;
+        if(screenX + (gamePanel.TileSize * 4)> 0 && screenX < (gamePanel.screenWidth * 4)/ gamePanel.scaleFactor &&
+                screenY + (gamePanel.TileSize * 4) > 0 && screenY < (gamePanel.screenHeight * 4) / gamePanel.scaleFactor) {
+            inframe = true;
+        }
+
+        return  inframe;
     }
 
     public void dyingAnimation(Graphics2D g2) {
@@ -481,6 +474,14 @@ public abstract class Unit  {
 
     public int getYdistance(Unit ent) {
         return Math.abs(worldY - ent.worldY);
+    }
+
+    public int getScreenX() {
+        return worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+    }
+
+    public int getScreenY() {
+        return worldY - gamePanel.player.worldY + gamePanel.player.screenY;
     }
 
     public int getDistance(Unit ent) {// tile distance

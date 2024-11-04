@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.Unit;
 import Obj.Bow;
 import Obj.PlayerHealth;
 import Obj.Potion;
@@ -47,6 +48,7 @@ public class UI {
         switch (gamePanel.gameState) {
             case PLAYING:
                 drawPlayerHealth();
+                drawEnemyHealthBar();
                 drawPlayScreen();
                 break;
             case PAUSED:
@@ -435,6 +437,46 @@ public class UI {
         //SPACE
         textY += (int) (gamePanel.TileSize /gamePanel.scaleFactor);
         g2.drawString("SPACE", textX, textY);
+    }
+
+    public void drawEnemyHealthBar() {
+        int newScreenX =  gamePanel.enemy[3].worldX - gamePanel.player.worldX + gamePanel.player.screenX;
+        int newScreenY =  gamePanel.enemy[3].worldY - gamePanel.player.worldY + gamePanel.player.screenY;
+        for (int i=0; i < gamePanel.enemy.length; i++) {
+            Unit enemy = gamePanel.enemy[i];
+            if (enemy != null && enemy.inFrame(enemy.getScreenX(), enemy.getScreenY())) {
+                if (enemy.healthBarOn && !enemy.statue) {
+                    double oneScale = (double) (gamePanel.TileSize - 10) / enemy.maxHealth;
+                    double hpBarValue = oneScale * enemy.health;
+                    g2.setColor(new Color(35, 35, 35));
+                    g2.fillRect(enemy.getScreenX() - 1, enemy.getScreenY() - 16, gamePanel.TileSize + 2, 12);
+                    g2.setColor(new Color(255, 0, 30));
+                    g2.fillRect(enemy.getScreenX(), enemy.getScreenY() - 15, (int) hpBarValue, 10);
+                    enemy.healthBarCounter++;
+                    if (enemy.healthBarCounter > 600) {
+                        enemy.healthBarCounter = 0;
+                        enemy.healthBarOn = false;
+                    }
+                }else if(enemy.statue &&
+                        enemy.getScreenX() + (gamePanel.TileSize)> 0 && enemy.getScreenX() < (gamePanel.screenWidth)/ gamePanel.scaleFactor &&
+                        enemy.getScreenY() + (gamePanel.TileSize) > 0 && enemy.getScreenY() < (gamePanel.screenHeight) / gamePanel.scaleFactor) {
+                    double oneScale = (double) (gamePanel.TileSize * 8) / enemy.maxHealth;
+                    double hpBarValue = oneScale * enemy.health;
+
+                    int x = gamePanel.screenWidth / 2 - gamePanel.TileSize * 4;
+                    int y = gamePanel.TileSize ;
+
+                    g2.setColor(new Color (35,35,35));
+                    g2.fillRect(x-1, y-2, gamePanel.TileSize*8 + 2, 20);
+                    g2.setColor(new Color(255,0,30));
+                    g2.fillRect(x+2, y+1, (int) hpBarValue - 2, 15);
+                    g2.setFont(g2.getFont().deriveFont (Font.BOLD, 24f));
+                    g2.setColor(Color.white);
+                    g2.drawString ("Weird", x + 4, y - 10);
+
+                }
+            }
+        }
     }
 
     public void drawSubWindow(double x, double y, double width, double height) {
