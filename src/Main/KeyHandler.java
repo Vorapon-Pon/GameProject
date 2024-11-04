@@ -27,7 +27,8 @@ public class KeyHandler implements KeyListener {
         if (keyCode == KeyEvent.VK_W) {
             if(gamePanel.gameState == GameState.GAMEOVER ||
                gamePanel.gameState == GameState.PAUSED ||
-               gamePanel.gameState == GameState.OPTION) {
+               gamePanel.gameState == GameState.OPTION ||
+               gamePanel.gameState == GameState.MENU ) {
 
                 if(gamePanel.ui.command > 0) {
                     gamePanel.ui.command--;
@@ -44,6 +45,11 @@ public class KeyHandler implements KeyListener {
                 gamePanel.playSE(7);
             }else if(gamePanel.gameState == GameState.OPTION) {
                 if(gamePanel.ui.command < 3) {
+                    gamePanel.ui.command++;
+                }
+                gamePanel.playSE(7);
+            }else if(gamePanel.gameState == GameState.MENU) {
+                if(gamePanel.ui.command < 1) {
                     gamePanel.ui.command++;
                 }
                 gamePanel.playSE(7);
@@ -113,8 +119,10 @@ public class KeyHandler implements KeyListener {
                     gamePanel.togglePause();
                 }else if(gamePanel.ui.command == 1) {
                     gamePanel.gameState = GameState.OPTION;
+                    gamePanel.ui.command = 0;
                 }else if(gamePanel.ui.command == 2) {
                     gamePanel.gameState = GameState.MENU;
+                    gamePanel.ui.command = 0;
                     gamePanel.reset();
                 }
             }else if(gamePanel.gameState == GameState.OPTION) {
@@ -129,6 +137,14 @@ public class KeyHandler implements KeyListener {
                 if(gamePanel.ui.command == 3) {
                     gamePanel.gameState = GameState.OPTION;
                     gamePanel.ui.command = 2;
+                }
+            }else if(gamePanel.gameState == GameState.MENU) {
+                if(gamePanel.ui.command == 0) {
+                    gamePanel.togglePause();
+                    gamePanel.playSE(7);
+                    gamePanel.playMusic(0);
+                }else if(gamePanel.ui.command == 1) {
+                    System.exit(0);
                 }
             }
         }

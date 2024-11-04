@@ -17,7 +17,7 @@ public class Player extends Unit {
         super(gamePanel);
         this.keyHandler = keyHandler;
         this.facingDirection = Direction.RIGHT;
-        this.worldX = gamePanel.TileSize * 9;
+        this.worldX = gamePanel.TileSize * 4;
         this.worldY = gamePanel.TileSize * 22;
         solidAreaDefaultX = collideBox.x;
         solidAreaDefaultY = collideBox.y;
@@ -37,7 +37,7 @@ public class Player extends Unit {
     }
 
     public void setDefault() {
-        this.worldX = gamePanel.TileSize * 9;
+        this.worldX = gamePanel.TileSize * 4;
         this.worldY = gamePanel.TileSize * 22;
         isInvincible = false;
         maxHealth = 100;

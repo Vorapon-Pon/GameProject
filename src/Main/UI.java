@@ -201,23 +201,40 @@ public class UI {
         int textWidth2 = g2.getFontMetrics().stringWidth(gameName);
         g2.drawString(gameName, (int) ((gamePanel.screenWidth - textWidth2) / 1.4), (int) (gamePanel.screenHeight / 4));
 
-        g2.setFont(new Font("Arial", Font.BOLD, 48));
-        String startText = "Start";
-        int textWidth1 = g2.getFontMetrics().stringWidth(startText);
-        g2.drawString(startText, (int) ((gamePanel.screenWidth - textWidth1) / 1.5), (int) (gamePanel.screenHeight / 2.5));
+        if(command == 0) {
+            g2.setFont(new Font("Arial", Font.BOLD, 48));
+            String startText = "Start";
+            int textWidth1 = g2.getFontMetrics().stringWidth(startText);
+            g2.drawString(startText, (int) ((gamePanel.screenWidth - textWidth1) / 1.5), (int) (gamePanel.screenHeight / 2.5));
+        }else {
+            g2.setColor(Color.GRAY);
+            g2.setFont(new Font("Arial", Font.BOLD, 36));
+            String startText = "Start";
+            int textWidth1 = g2.getFontMetrics().stringWidth(startText);
+            g2.drawString(startText, (int) ((gamePanel.screenWidth - textWidth1) / 1.5), (int) (gamePanel.screenHeight / 2.5));
+        }
+
 
         g2.setFont(new Font("Arial", Font.BOLD, 12));
         g2.setColor(new Color(255, 255, 255, 100));
         String spaceText = "Press Space or Enter";
         int textWidth3 = g2.getFontMetrics().stringWidth(spaceText);
-        g2.drawString(spaceText, (int) ((gamePanel.screenWidth - textWidth3) / 1.5), (int) (gamePanel.screenHeight / 2.4));
+        g2.drawString(spaceText, (int) ((gamePanel.screenWidth - textWidth3) / 1.49), (int) (gamePanel.screenHeight / 2.4));
         g2.drawImage(image, (int) (gamePanel.screenWidth / 5) - 30, (int) (gamePanel.screenHeight / 3.4),350, 350, null);
 
-        g2.setColor(Color.WHITE);
-        g2.setFont(new Font("Arial", Font.BOLD, 48));
-        String exit = "Exit game";
-        int textWidth4 = g2.getFontMetrics().stringWidth(exit);
-        g2.drawString(exit, (int) ((gamePanel.screenWidth - textWidth4) / 1.45), (int) (gamePanel.screenHeight / 1.8));
+        if(command == 1) {
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.BOLD, 48));
+            String exit = "Exit game";
+            int textWidth4 = g2.getFontMetrics().stringWidth(exit);
+            g2.drawString(exit, (int) ((gamePanel.screenWidth - textWidth4) / 1.45), (int) (gamePanel.screenHeight / 1.8));
+        }else {
+            g2.setColor(Color.GRAY);
+            g2.setFont(new Font("Arial", Font.BOLD, 36));
+            String exit = "Exit game";
+            int textWidth4 = g2.getFontMetrics().stringWidth(exit);
+            g2.drawString(exit, (int) ((gamePanel.screenWidth - textWidth4) / 1.48), (int) (gamePanel.screenHeight / 1.8));
+        }
     }
 
     public void drawGameOverScreen() {
