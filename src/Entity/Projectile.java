@@ -22,6 +22,8 @@ public class Projectile extends Unit{
 
     public void update() {
 
+        gamePanel.collisionCheck.checkTile(this);
+
         if(ent == gamePanel.player) {
             int enmeyIndex = gamePanel.collisionCheck.checkUnit(this,gamePanel.enemy);
             if(enmeyIndex != 999) {
@@ -42,6 +44,10 @@ public class Projectile extends Unit{
             case LEFT :
                 worldX -= speed;
                 break;
+        }
+
+        if(collisionOn) {
+            isAlive = false;
         }
 
         health--;

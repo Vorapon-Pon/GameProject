@@ -1,5 +1,6 @@
 package Entity;
 
+import Main.Asset;
 import Main.Direction;
 import Main.Equip;
 import Main.GamePanel;
@@ -9,6 +10,11 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class StatueHitZone extends Unit {
+    private  boolean isAttacked = false;
+    private int attackRange = 9;
+    private boolean isSpawn = false;
+    private int spawnCooldown = 1200;
+    private int spawnCounter = 0;
 
     public StatueHitZone(GamePanel gamePanel) {
         super(gamePanel);
@@ -36,26 +42,44 @@ public class StatueHitZone extends Unit {
     }
 
     public void setAction() {
-        if (isPlayerInRangeAndAligned()) {
+
+        if(spawnCounter > 0) {
+            spawnCounter--;
+        }else {
+            isSpawn = false;
+        }
+
+        if (isPlayerInRange() && !isSpawn && isAttacked) {
             spriteIndex = 0;
-            isAttacking = true;
+            isSpawn = true;
             attack();
+        }
+
+        if(health < maxHealth) {
+            isAttacked = true;
         }
 
     }
 
     @Override
     public void attack() {
-
+        if (isSpawn && isAlive) {
+            gamePanel.playSE(11);
+            spawnCounter = spawnCooldown;
+            new Thread(() -> gamePanel.asset.revive()).start();
+        }
     }
 
-    private boolean isPlayerInRangeAndAligned() {
-        if (worldY <= gamePanel.player.collideBox.y + gamePanel.player.collideBox.height &&
-                worldY >= gamePanel.player.collideBox.y - gamePanel.player.collideBox.height) {
+    private boolean isPlayerInRange() {
+        // Calculate distance between statue and player
+        int distanceX = Math.abs(this.worldX - gamePanel.player.worldX);
+        int distanceY = Math.abs(this.worldY - gamePanel.player.worldY);
 
-            return gamePanel.player.collideBox.width <= this.collideBox.x + this.collideBox.width;
-        }
-        return false;
+        // Convert distance to tiles (assuming TileSize is in pixels)
+        int distanceToPlayer = (distanceX + distanceY) / gamePanel.TileSize;
+
+        // Check if the player is within the defined range
+        return distanceToPlayer <= attackRange;
     }
 
     @Override

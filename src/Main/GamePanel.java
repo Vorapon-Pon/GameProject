@@ -25,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable {
     public int screenWidth = TileSize * MaxCol;  // 1280 Pixel
     public int screenHeight = TileSize * MaxRow; // 720 Pixel
 
-    public final int maxWorldRow = 27;
-    public final int maxWorldCol = 48;
+    public int maxWorldRow = 50; //27
+    public int maxWorldCol = 50; //48
     public final int maxWorldWidth = TileSize * maxWorldCol;
     public final int maxWorldHeight = TileSize * maxWorldRow;
 
@@ -41,8 +41,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this,keyHandler);
     public Asset asset = new Asset(this);
     public PathFinder pathFinder = new PathFinder(this);
-    public Unit[] obj = new Unit[10];
-    public Unit[] enemy = new Unit[20];
+    public Unit[] obj = new Unit[20];
+    public Unit[] enemy = new Unit[30];
+    public ArrayList<Unit> RandomEnemy = new ArrayList<>();
     public ArrayList<Unit> projectileList = new ArrayList<Unit>();
     ArrayList<Unit> renderList = new ArrayList<Unit>();
 

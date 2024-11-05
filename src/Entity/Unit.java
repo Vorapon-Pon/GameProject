@@ -374,8 +374,6 @@ public abstract class Unit  {
             g2.drawImage(image, screenX, screenY, null);
         }
 
-        g2.drawRect(screenX , screenY , collideBox.width, collideBox.height);// draw collideBOx
-
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 

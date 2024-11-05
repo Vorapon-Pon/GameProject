@@ -11,6 +11,7 @@ import java.util.Random;
 public class EnemyArcher extends Unit {
 
     private final int attackRange = 5; // Archer's attack range
+    private boolean chasing = false;
     private boolean isShooting = false;
     private boolean isStayingStill = false;
     private int stayStillCounter = 0; // Counter to control stay-still duration
@@ -113,6 +114,7 @@ public class EnemyArcher extends Unit {
         int distanceToPlayer = (distanceX + distanceY) / gamePanel.TileSize;
 
         if (distanceToPlayer <= attackRange) {
+            chasing = true;
             if (!isShooting) {
                 onPath = false;
                 facePlayer();
@@ -137,32 +139,32 @@ public class EnemyArcher extends Unit {
 
             searchPath(goalCol, goalRow);
 
-            if(distanceToPlayer > 10) {
+            if(distanceToPlayer > 15) {
                 onPath = false;
             }
         }else {
             actionCounter++;
 
-            if (actionCounter == 60) {
+            if(actionCounter == 60) {
                 Random random = new Random();
                 int i = random.nextInt(125) + 1; // random num
 
-                if (i <= 25) {
+                if(i == 117) {
                     behavior = "up";
-                } else if (i <= 50) {
+                }else if(i == 118) {
                     behavior = "down";
-                } else if (i <= 75) {
-                    behavior = "left";
-                } else if (i <= 100) {
+                }else if(i == 119) {
                     behavior = "right";
-                } else {
+                }else if(i == 120) {
+                    behavior = "left";
+                }else  {
                     behavior = "idle";
                 }
 
                 actionCounter = 0;
             }
 
-            if (distanceToPlayer < 7) {
+            if (distanceToPlayer < 8) {
                 int i = new Random().nextInt(100) + 1;
                 if (i > 50) {
                     onPath = true;
@@ -174,7 +176,7 @@ public class EnemyArcher extends Unit {
     @Override
     public void attack() {
         onPath = false;
-        if (shotCooldown <= 0 && !projectile.isAlive) { // Only attack if cooldown is ready
+        if (shotCooldown <= 0 && !projectile.isAlive && chasing) { // Only attack if cooldown is ready
             projectile.set(worldX, worldY, String.valueOf(facingDirection), true, this);
             gamePanel.projectileList.add(projectile);
             spriteIndex = 0;

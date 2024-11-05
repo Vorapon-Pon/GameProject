@@ -17,8 +17,8 @@ public class Player extends Unit {
         super(gamePanel);
         this.keyHandler = keyHandler;
         this.facingDirection = Direction.RIGHT;
-        this.worldX = gamePanel.TileSize * 4;
-        this.worldY = gamePanel.TileSize * 22;
+        this.worldX = gamePanel.TileSize * 3;
+        this.worldY = gamePanel.TileSize * 45;
         solidAreaDefaultX = collideBox.x;
         solidAreaDefaultY = collideBox.y;
         collideBox = new Rectangle(20,20,40,40);
@@ -37,13 +37,13 @@ public class Player extends Unit {
     }
 
     public void setDefault() {
-        this.worldX = gamePanel.TileSize * 4;
-        this.worldY = gamePanel.TileSize * 22;
+        this.worldX = gamePanel.TileSize * 3;
+        this.worldY = gamePanel.TileSize * 45;
         isInvincible = false;
         maxHealth = 100;
         health = maxHealth;
         hasBow = false;
-        arrow = 3;
+        arrow = 10;
         hasPotion = false;
         potion = 0;
 
@@ -418,13 +418,7 @@ public class Player extends Unit {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
         }
 
-        if (isAttacking) {
-            g2.setColor(Color.YELLOW);
-            g2.drawRect(screenX + collideBox.width , screenY + collideBox.y, AttackhitsBox.width, AttackhitsBox.height);
-        }
-
         g2.drawImage(image, screenX, screenY, null);
-        g2.drawRect(screenX  , screenY , collideBox.width, collideBox.height);
 
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }

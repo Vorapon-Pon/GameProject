@@ -86,7 +86,7 @@ public class EnemySword extends Unit {
 
             searchPath(goalCol, goalRow);
 
-            if (distanceToPlayer > 10) {
+            if (distanceToPlayer > 15) {
                 onPath = false;
             }
         }else {
@@ -96,13 +96,13 @@ public class EnemySword extends Unit {
                 Random random = new Random();
                 int i = random.nextInt(125) + 1; // random num
 
-                if(i <= 25) {
+                if(i == 117) {
                     behavior = "up";
-                }else if(i <= 50) {
+                }else if(i == 118) {
                     behavior = "down";
-                }else if(i <= 75) {
+                }else if(i == 119) {
                     behavior = "right";
-                }else if(i <= 100) {
+                }else if(i == 120) {
                     behavior = "left";
                 }else  {
                     behavior = "idle";

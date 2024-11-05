@@ -7,10 +7,10 @@ import Main.GamePanel;
 
 import java.awt.image.BufferedImage;
 
-public class wkey extends Unit {
-    public wkey(GamePanel gamePanel) {
+public class skey extends Unit {
+    public skey(GamePanel gamePanel) {
         super(gamePanel);
-        name = "wkey";
+        name = "skey";
         behavior = "idle";
         facingDirection = Direction.RIGHT;
         equipWeapon = Equip.BOW;
@@ -21,7 +21,7 @@ public class wkey extends Unit {
     public void loadSprites(String folderPath) {
         idleBowRight = new BufferedImage[10];
         for(int i = 0; i < 10; i++) {
-            idleBowRight[i] = setUp(folderPath + "/Wkeys" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
+            idleBowRight[i] = setUp(folderPath + "/Skeys" + (i+1), gamePanel.TileSize, gamePanel.TileSize);
         }
     }
 }
