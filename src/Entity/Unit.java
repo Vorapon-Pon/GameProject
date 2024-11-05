@@ -79,6 +79,7 @@ public abstract class Unit  {
     public int shotCooldown = 0;
     public int shotDelay = 0;
     public int knockbackCount = 0;
+    public int attackCooldown = 0;
 
     public Unit(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -138,11 +139,49 @@ public abstract class Unit  {
 
     }
 
+    public void checkAttack(int rate, int rangeV, int rangeH) {
+        boolean playerInRange = false;
+        int distanceX = getXdistance(gamePanel.player);
+        int distanceY = getYdistance(gamePanel.player);
+
+        switch(behavior) {
+            case "up":
+                if(gamePanel.player.worldY < worldY && distanceY < rangeV && distanceX <= rangeH) {
+                    playerInRange = true;
+                }
+                break;
+            case "down":
+                if (gamePanel.player.worldY > worldY && distanceY < rangeV && distanceX <= rangeH) {
+                    playerInRange = true;
+                }
+                break;
+            case "left":
+                if(gamePanel.player.worldX < worldX && distanceX < rangeV && distanceY <= rangeH) {
+                    playerInRange = true;
+                }
+                break;
+            case "right":
+                if (gamePanel.player.worldX > worldX && distanceX < rangeV && distanceY <= rangeH) {
+                    playerInRange = true;
+                }
+                break;
+        }
+
+        if(playerInRange) {
+            int i = new Random().nextInt(rate);
+            if(i == 0) {
+                isAttacking = true;
+                spriteIndex = 0;
+                spriteCounter = 0;
+                attackCooldown = 120;
+            }
+        }
+    }
+
     public void knockback(Unit ent) {
         ent.speed = 0;
         ent.knockback = true;
     }
-
 
     public void damageReaction() {
 
@@ -190,13 +229,13 @@ public abstract class Unit  {
 
     public void update() {
 
-        if(knockback) {
+        if (knockback) {
             checkCollision();
-            if(collisionOn) {
+            if (collisionOn) {
                 knockbackCount = 0;
                 knockback = false;
                 speed = defaultSpeed;
-            }else if(!collisionOn) {
+            } else if (!collisionOn) {
                 switch (gamePanel.player.behavior) {
                     case "left":
                         worldX -= speed;
@@ -204,21 +243,24 @@ public abstract class Unit  {
                     case "right":
                         worldX += speed;
                         break;
-                    case "up" :
+                    case "up":
                         worldY -= speed;
                         break;
-                    case "down" :
+                    case "down":
                         worldY += speed;
                         break;
                 }
             }
 
             knockbackCount++;
-            if(knockbackCount == 2) {
-                knockbackCount= 0;
+            if (knockbackCount == 2) {
+                knockbackCount = 0;
                 knockback = false;
                 speed = defaultSpeed;
             }
+        }else if(isAttacking && attackCooldown <= 0){
+            attack();
+            isAttacking = false;
         }else {
             setAction();
             checkCollision();
@@ -243,6 +285,19 @@ public abstract class Unit  {
             }else {
                 behavior = "idle";
             }
+
+            spriteCounter++;
+            if (spriteCounter > 6) {
+                spriteIndex++;
+                if (spriteIndex >= animationSpeed) { // Loop through the frames
+                    spriteIndex = 0;
+                }
+                spriteCounter = 0;
+            }
+        }
+
+        if(attackCooldown > 0) {
+            attackCooldown--;
         }
 
         if (shotCooldown > 0) {
@@ -263,14 +318,7 @@ public abstract class Unit  {
             }
         }
 
-        spriteCounter++;
-        if (spriteCounter > 6) {
-            spriteIndex++;
-            if (spriteIndex >= animationSpeed) { // Loop through the frames
-                spriteIndex = 0;
-            }
-            spriteCounter = 0;
-        }
+
 
         if (isInvincible) {
             invincibleCounter++;

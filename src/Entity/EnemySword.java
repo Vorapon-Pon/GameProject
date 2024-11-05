@@ -4,6 +4,7 @@ import Main.Direction;
 import Main.Equip;
 import Main.GamePanel;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -15,6 +16,7 @@ public class EnemySword extends Unit {
         Direction facingDirection = Direction.LEFT;
         behavior = "idle";
         equipWeapon = Equip.SWORD; // Set initial weapon to SWORD
+        AttackhitsBox = new Rectangle(20,20, 40,60);
         defaultSpeed = 2;
         damage = 15;
         speed = defaultSpeed;
@@ -74,10 +76,8 @@ public class EnemySword extends Unit {
         int distanceY = Math.abs(worldY - gamePanel.player.worldY);
         int distanceToPlayer = (distanceX + distanceY) / gamePanel.TileSize;
 
-        if (isPlayerInRangeAndAligned()) {
-            spriteIndex = 0;
-            isAttacking = true;
-            attack();
+        if (!isAttacking) {
+            checkAttack(30, gamePanel.TileSize, gamePanel.TileSize);
         }
 
         if (onPath) {
@@ -122,8 +122,38 @@ public class EnemySword extends Unit {
 
     @Override
     public void attack() {
+        gamePanel.playSE(2);
+        // Store current position and box sizes
+        int currWorldX = worldX;
+        int currWorldY = worldY;
+        int CollideBoxWidth = collideBox.width;
+        int CollideBoxHeight = collideBox.height;
 
+        // Adjust hitbox position based on facing direction
+        switch (behavior) {
+            case "left":
+                worldX -= AttackhitsBox.width;
+                break;
+            case "right":
+                worldX += AttackhitsBox.width;
+                break;
+            case "up","down", "idle":
+                worldX = facingDirection == Direction.RIGHT ? worldX + AttackhitsBox.width : worldX - AttackhitsBox.width;
+                break;
+        }
+        // Update collideBox to simulate attack range
+        collideBox.width = AttackhitsBox.width;
+        collideBox.height = AttackhitsBox.height;
+
+        gamePanel.player.takeDamage(damage);
+
+        // Revert position and box size after attack
+        worldX = currWorldX;
+        worldY = currWorldY;
+        collideBox.width = CollideBoxWidth;
+        collideBox.height = CollideBoxHeight;
     }
+
 
     private boolean isPlayerInRangeAndAligned() {
        if (worldY <= gamePanel.player.collideBox.y + gamePanel.player.collideBox.height &&

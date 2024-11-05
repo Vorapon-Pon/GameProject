@@ -21,7 +21,7 @@ public class Player extends Unit {
         this.worldY = gamePanel.TileSize * 45;
         solidAreaDefaultX = collideBox.x;
         solidAreaDefaultY = collideBox.y;
-        collideBox = new Rectangle(20,20,40,40);
+        collideBox = new Rectangle(0,0,40,40);
         AttackhitsBox = new Rectangle(20,20, 40,60);
         damage = 30;
         maxHealth = 100;
@@ -46,7 +46,6 @@ public class Player extends Unit {
         arrow = 10;
         hasPotion = false;
         potion = 0;
-
     }
 
     @Override

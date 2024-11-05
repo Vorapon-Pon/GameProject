@@ -94,6 +94,7 @@ public class UI {
 
     public void drawPlayScreen() {
         if(gamePanel.player.hasBow) {
+            g2.setColor(Color.WHITE);
             g2.drawImage(BowImage, gamePanel.TileSize / 2, gamePanel.TileSize / 2, gamePanel.TileSize, gamePanel.TileSize, null);
             g2.setFont(new Font("Arial", Font.PLAIN, (int) (24/gamePanel.scaleFactor)));
             g2.drawString("x " + gamePanel.player.arrow, 100, 100);

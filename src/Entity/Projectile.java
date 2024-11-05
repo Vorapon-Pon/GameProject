@@ -21,9 +21,6 @@ public class Projectile extends Unit{
     }
 
     public void update() {
-
-        gamePanel.collisionCheck.checkTile(this);
-
         if(ent == gamePanel.player) {
             int enmeyIndex = gamePanel.collisionCheck.checkUnit(this,gamePanel.enemy);
             if(enmeyIndex != 999) {
@@ -46,10 +43,6 @@ public class Projectile extends Unit{
                 break;
         }
 
-        if(collisionOn) {
-            isAlive = false;
-        }
-
         health--;
         if(health <= 0) {
             isAlive = false;
@@ -63,6 +56,7 @@ public class Projectile extends Unit{
             }
             spriteCounter = 0;
         }
+
     }
 
     public boolean haveArrow(Unit ent) {

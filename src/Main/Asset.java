@@ -32,39 +32,43 @@ public class Asset {
         gamePanel.obj[3].worldY = gamePanel.TileSize * 19;
 
         gamePanel.obj[4] = new Potion(gamePanel);
-        gamePanel.obj[4].worldX = gamePanel.TileSize * 20;
-        gamePanel.obj[4].worldY = gamePanel.TileSize * 19;
+        gamePanel.obj[4].worldX = gamePanel.TileSize * 9;
+        gamePanel.obj[4].worldY = gamePanel.TileSize * 21;
 
         gamePanel.obj[5] = new Campfire(gamePanel);
-        gamePanel.obj[5].worldX = gamePanel.TileSize * 6;
-        gamePanel.obj[5].worldY = gamePanel.TileSize * 22;
+        gamePanel.obj[5].worldX = gamePanel.TileSize * 7;
+        gamePanel.obj[5].worldY = gamePanel.TileSize * 45;
 
-        gamePanel.obj[6] = new wkey(gamePanel);
-        gamePanel.obj[6].worldX = gamePanel.TileSize * 6;
-        gamePanel.obj[6].worldY = gamePanel.TileSize * 20;
+        gamePanel.obj[6] = new wkey(gamePanel);             //MOVEMENT KEY
+        gamePanel.obj[6].worldX = gamePanel.TileSize * 7;
+        gamePanel.obj[6].worldY = gamePanel.TileSize * 43;
 
-        gamePanel.obj[7] = new akey(gamePanel);
-        gamePanel.obj[7].worldX = gamePanel.TileSize * 5;
-        gamePanel.obj[7].worldY = gamePanel.TileSize * 21;
+        gamePanel.obj[7] = new akey(gamePanel);             //MOVEMENT KEY
+        gamePanel.obj[7].worldX = gamePanel.TileSize * 6;
+        gamePanel.obj[7].worldY = gamePanel.TileSize * 44;
 
-        gamePanel.obj[8] = new skey(gamePanel);
-        gamePanel.obj[8].worldX = gamePanel.TileSize * 6;
-        gamePanel.obj[8].worldY = gamePanel.TileSize * 21;
+        gamePanel.obj[8] = new skey(gamePanel);             //MOVEMENT KEY
+        gamePanel.obj[8].worldX = gamePanel.TileSize * 7;
+        gamePanel.obj[8].worldY = gamePanel.TileSize * 44;
 
-        gamePanel.obj[9] = new dkey(gamePanel);
-        gamePanel.obj[9].worldX = gamePanel.TileSize * 7;
-        gamePanel.obj[9].worldY = gamePanel.TileSize * 21;
+        gamePanel.obj[9] = new dkey(gamePanel);             //MOVEMENT KEY
+        gamePanel.obj[9].worldX = gamePanel.TileSize * 8;
+        gamePanel.obj[9].worldY = gamePanel.TileSize * 44;
 
         gamePanel.obj[10] = new Potion(gamePanel);
         gamePanel.obj[10].worldX = gamePanel.TileSize * 2;
         gamePanel.obj[10].worldY = gamePanel.TileSize * 3;
+
+        gamePanel.obj[11] = new Potion(gamePanel);
+        gamePanel.obj[11].worldX = gamePanel.TileSize * 19;
+        gamePanel.obj[11].worldY = gamePanel.TileSize * 30;
     }
 
     public void setEnemy(){
 
         gamePanel.enemy[0] = new EnemySword(gamePanel);
-        gamePanel.enemy[0].worldX = gamePanel.TileSize * 21;
-        gamePanel.enemy[0].worldY = gamePanel.TileSize * 8;
+        gamePanel.enemy[0].worldX = gamePanel.TileSize * 14;
+        gamePanel.enemy[0].worldY = gamePanel.TileSize * 35;
 
         gamePanel.enemy[1] = new EnemySword(gamePanel);
         gamePanel.enemy[1].worldX = gamePanel.TileSize * 4;
@@ -87,6 +91,18 @@ public class Asset {
         for(int i = 5; i < 11;i++) {
             gamePanel.enemy[i] = null;
         }
+
+        gamePanel.enemy[11] = new EnemySword(gamePanel);
+        gamePanel.enemy[11].worldX = gamePanel.TileSize * 17;
+        gamePanel.enemy[11].worldY = gamePanel.TileSize * 30;
+
+        gamePanel.enemy[12] = new EnemySword(gamePanel);
+        gamePanel.enemy[12].worldX = gamePanel.TileSize * 7;
+        gamePanel.enemy[12].worldY = gamePanel.TileSize * 23;
+
+        gamePanel.enemy[13] = new EnemySword(gamePanel);
+        gamePanel.enemy[13].worldX = gamePanel.TileSize * 12;
+        gamePanel.enemy[13].worldY = gamePanel.TileSize * 23;
 
     }
 
