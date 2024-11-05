@@ -28,7 +28,8 @@ public class KeyHandler implements KeyListener {
             if(gamePanel.gameState == GameState.GAMEOVER ||
                gamePanel.gameState == GameState.PAUSED ||
                gamePanel.gameState == GameState.OPTION ||
-               gamePanel.gameState == GameState.MENU ) {
+               gamePanel.gameState == GameState.MENU ||
+               gamePanel.gameState == GameState.VICTORY) {
 
                 if(gamePanel.ui.command > 0) {
                     gamePanel.ui.command--;
@@ -38,7 +39,9 @@ public class KeyHandler implements KeyListener {
             upPressed = true;
         }
         if (keyCode == KeyEvent.VK_S) {
-            if(gamePanel.gameState == GameState.GAMEOVER || gamePanel.gameState == GameState.PAUSED) {
+            if(gamePanel.gameState == GameState.GAMEOVER ||
+               gamePanel.gameState == GameState.PAUSED ||
+               gamePanel.gameState == GameState.VICTORY) {
                 if(gamePanel.ui.command < 2) {
                     gamePanel.ui.command++;
                 }
@@ -108,9 +111,11 @@ public class KeyHandler implements KeyListener {
             gamePanel.playSE(7);
             if(gamePanel.gameState == GameState.GAMEOVER) {
                 if(gamePanel.ui.command == 0) {
+                    gamePanel.stopMusic();
                     gamePanel.gameState = GameState.PLAYING;
                     gamePanel.retry();
                 }else if(gamePanel.ui.command == 1) {
+                    gamePanel.stopMusic();
                     gamePanel.gameState = GameState.MENU;
                     gamePanel.reset();
                 }
@@ -141,10 +146,21 @@ public class KeyHandler implements KeyListener {
             }else if(gamePanel.gameState == GameState.MENU) {
                 if(gamePanel.ui.command == 0) {
                     gamePanel.togglePause();
-                    gamePanel.playSE(7);
                     gamePanel.playMusic(0);
                 }else if(gamePanel.ui.command == 1) {
                     System.exit(0);
+                }
+            }else if(gamePanel.gameState == GameState.VICTORY) {
+                if(gamePanel.ui.command == 0) {
+                    gamePanel.stopMusic();
+                    gamePanel.reset();
+                    gamePanel.retry();
+                    gamePanel.gameState = GameState.PLAYING;
+                }else if(gamePanel.ui.command == 1) {
+                    gamePanel.gameState = GameState.MENU;
+                    gamePanel.ui.command = 0;
+                    gamePanel.reset();
+                    gamePanel.stopMusic();
                 }
             }
         }

@@ -29,7 +29,7 @@ public class Player extends Unit {
         maxArrow = 32;
         arrow = 3;
         potion = 0;
-        this.defaultSpeed = 10;
+        this.defaultSpeed = 20;
         this.speed = defaultSpeed;
         projectile = new Arrow(gamePanel);
 
@@ -244,6 +244,7 @@ public class Player extends Unit {
             if(health <= 0) {
                 gamePanel.gameState = GameState.GAMEOVER;
                 gamePanel.stopMusic();
+                gamePanel.playMusic(12);
             }
 
             updateScreenPosition();

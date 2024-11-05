@@ -67,6 +67,9 @@ public class UI {
             case GAMEOVER:
                 drawGameOverScreen();
                 break;
+            case VICTORY:
+                drawVictoryScreen();
+                break;
         }
 
     }
@@ -275,7 +278,6 @@ public class UI {
             int textWidth3 = g2.getFontMetrics().stringWidth(back);
             g2.drawString(back, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth3) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2) + 140) ;
         }
-
     }
 
     public void drawOptionsScreen() {
@@ -441,8 +443,6 @@ public class UI {
     }
 
     public void drawEnemyHealthBar() {
-        int newScreenX =  gamePanel.enemy[3].worldX - gamePanel.player.worldX + gamePanel.player.screenX;
-        int newScreenY =  gamePanel.enemy[3].worldY - gamePanel.player.worldY + gamePanel.player.screenY;
         for (int i=0; i < gamePanel.enemy.length; i++) {
             Unit enemy = gamePanel.enemy[i];
             if (enemy != null && enemy.inFrame(enemy.getScreenX(), enemy.getScreenY())) {
@@ -475,8 +475,51 @@ public class UI {
                     g2.setColor(Color.white);
                     g2.drawString ("Weird", x + 4, y - 10);
 
+                    if(enemy.health <= 0) {
+                        gamePanel.gameState = GameState.VICTORY;
+                        gamePanel.stopMusic();
+                        gamePanel.playMusic(12);
+                    }
+
                 }
             }
+        }
+    }
+
+    public void drawVictoryScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, (int) (gamePanel.screenWidth / gamePanel.scaleFactor), (int) (gamePanel.screenHeight / gamePanel.scaleFactor));
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, (int) (72/gamePanel.scaleFactor)));
+        String victory = "Victory";
+        int textWidth = g2.getFontMetrics().stringWidth(victory);
+        g2.drawString(victory, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2));
+
+        //Retry
+        String retry = "Retry";
+        if(command == 0) {
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.BOLD, (int) (32/gamePanel.scaleFactor)));
+            int textWidth2 = g2.getFontMetrics().stringWidth(retry);
+            g2.drawString(retry, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth2) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2) + 80) ;
+        }else {
+            g2.setColor(Color.GRAY);
+            g2.setFont(new Font("Arial", Font.BOLD, (int) (28/gamePanel.scaleFactor)));
+            int textWidth2 = g2.getFontMetrics().stringWidth(retry);
+            g2.drawString(retry, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth2) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2) + 80) ;
+        }
+        //Back to Menu
+        String back = "Back to Menu";
+        if(command == 1) {
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.BOLD, (int) (32/gamePanel.scaleFactor)));
+            int textWidth3 = g2.getFontMetrics().stringWidth(back);
+            g2.drawString(back, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth3) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2) + 140) ;
+        }else {
+            g2.setColor(Color.GRAY);
+            g2.setFont(new Font("Arial", Font.BOLD, (int) (28/gamePanel.scaleFactor)));
+            int textWidth3 = g2.getFontMetrics().stringWidth(back);
+            g2.drawString(back, (int) (((gamePanel.screenWidth/ gamePanel.scaleFactor) - textWidth3) / 2), (int) ((gamePanel.screenHeight/ gamePanel.scaleFactor) / 2) + 140) ;
         }
     }
 

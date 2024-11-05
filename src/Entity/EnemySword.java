@@ -77,7 +77,7 @@ public class EnemySword extends Unit {
         int distanceToPlayer = (distanceX + distanceY) / gamePanel.TileSize;
 
         if (!isAttacking) {
-            checkAttack(30, gamePanel.TileSize, gamePanel.TileSize);
+            checkAttack(30, gamePanel.TileSize * 2, gamePanel.TileSize/2);
         }
 
         if (onPath) {
@@ -124,6 +124,7 @@ public class EnemySword extends Unit {
     public void attack() {
         gamePanel.playSE(2);
         // Store current position and box sizes
+
         int currWorldX = worldX;
         int currWorldY = worldY;
         int CollideBoxWidth = collideBox.width;

@@ -27,7 +27,8 @@ public class Sounds {
         soundURL[9] = getClass().getResource("/Sound/SwapWeapon.wav");
         soundURL[10] = getClass().getResource("/Sound/HealingSound.wav");
         soundURL[11] = getClass().getResource("/Sound/eerieHorn.wav");
-
+        soundURL[12] = getClass().getResource("/Sound/Determination.wav");
+        soundURL[13] = getClass().getResource("/Sound/Undyne.wav");
     }
 
     public void setFile(int i) {

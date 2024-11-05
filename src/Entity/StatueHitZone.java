@@ -1,9 +1,6 @@
 package Entity;
 
-import Main.Asset;
-import Main.Direction;
-import Main.Equip;
-import Main.GamePanel;
+import Main.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,8 +10,7 @@ public class StatueHitZone extends Unit {
     private  boolean isAttacked = false;
     private int attackRange = 9;
     private boolean isSpawn = false;
-    private int spawnCooldown = 1200;
-    private int spawnCounter = 0;
+    private int spawnCooldown = 0;
 
     public StatueHitZone(GamePanel gamePanel) {
         super(gamePanel);
@@ -43,8 +39,8 @@ public class StatueHitZone extends Unit {
 
     public void setAction() {
 
-        if(spawnCounter > 0) {
-            spawnCounter--;
+        if(spawnCooldown > 0) {
+            spawnCooldown--;
         }else {
             isSpawn = false;
         }
@@ -59,14 +55,19 @@ public class StatueHitZone extends Unit {
             isAttacked = true;
         }
 
+        if(health <= 0) {
+            gamePanel.gameState = GameState.VICTORY;
+        }
+
     }
 
     @Override
     public void attack() {
-        if (isSpawn && isAlive) {
+        if (isSpawn && isAlive && spawnCooldown <= 0) {
             gamePanel.playSE(11);
-            spawnCounter = spawnCooldown;
+            spawnCooldown = 1800;
             new Thread(() -> gamePanel.asset.revive()).start();
+            trigger();
         }
     }
 
@@ -80,6 +81,13 @@ public class StatueHitZone extends Unit {
 
         // Check if the player is within the defined range
         return distanceToPlayer <= attackRange;
+    }
+
+    public void trigger() {
+        if(isAttacked) {
+            gamePanel.stopMusic();
+            gamePanel.playMusic(13);
+        }
     }
 
     @Override
