@@ -145,6 +145,7 @@ public class Player extends Unit {
         if(keyHandler.usePotion) {
             if(health != maxHealth) {
                 useHealing();
+                keyHandler.usePotion =false; // prevent use 2 potion at the same time
             }
         }
 
@@ -340,6 +341,7 @@ public class Player extends Unit {
             if (health > maxHealth) {
                 health = maxHealth;  // Prevent overhealing
             }
+
             potion--;
         }
     }
