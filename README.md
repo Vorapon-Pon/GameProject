@@ -6,10 +6,6 @@ Welcome to **GameProject**! This project is designed as part of an Object-Orient
 - [About](#about)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [OOP Concepts](#oop-concepts)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## About
 
