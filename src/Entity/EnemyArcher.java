@@ -58,7 +58,6 @@ public class EnemyArcher extends Unit {
         stayStillCounter = stayStillDuration; // Start counter for 1 second
     }
 
-
     public void collideUnit(int index) {
         if (index != 999) {
             Unit otherEnemy = gamePanel.enemy[index]; // Get the colliding enemy unit
@@ -131,9 +130,9 @@ public class EnemyArcher extends Unit {
             int goalCol;
             int goalRow;
             if(gamePanel.player.worldX > this.worldX) {
-                goalCol = (gamePanel.player.worldX + gamePanel.player.collideBox.x - (gamePanel.TileSize * 4)) / gamePanel.TileSize;
+                goalCol = (gamePanel.player.worldX + gamePanel.player.collideBox.x - (gamePanel.TileSize * 3)) / gamePanel.TileSize;
             }else {
-                goalCol = (gamePanel.player.worldX + gamePanel.player.collideBox.x + (gamePanel.TileSize * 4)) / gamePanel.TileSize;
+                goalCol = (gamePanel.player.worldX + gamePanel.player.collideBox.x + (gamePanel.TileSize * 3)) / gamePanel.TileSize;
             }
             goalRow = (gamePanel.player.worldY + gamePanel.player.collideBox.y) / gamePanel.TileSize;
 

@@ -29,10 +29,6 @@ public class StatueHitZone extends Unit {
         loadSprites("/Enemy");
     }
 
-    public void collideUnit(int index) {
-
-    }
-
     public void update() {
         super.update();
     }
@@ -51,10 +47,6 @@ public class StatueHitZone extends Unit {
             attack();
         }
 
-        if(health < maxHealth) {
-            isAttacked = true;
-        }
-
         if(health <= 0) {
             gamePanel.gameState = GameState.VICTORY;
         }
@@ -67,7 +59,6 @@ public class StatueHitZone extends Unit {
             gamePanel.playSE(11);
             spawnCooldown = 1800;
             new Thread(() -> gamePanel.asset.revive()).start();
-            trigger();
         }
     }
 
@@ -84,9 +75,10 @@ public class StatueHitZone extends Unit {
     }
 
     public void trigger() {
-        if(isAttacked) {
+        if(!isAttacked) {
             gamePanel.stopMusic();
             gamePanel.playMusic(13);
+            isAttacked = true;
         }
     }
 
@@ -115,5 +107,8 @@ public class StatueHitZone extends Unit {
     }
 
     public void damageReaction() {
+        if(!isAttacked) {
+            trigger();
+        }
     }
 }

@@ -155,16 +155,6 @@ public class EnemySword extends Unit {
         collideBox.height = CollideBoxHeight;
     }
 
-
-    private boolean isPlayerInRangeAndAligned() {
-       if (worldY <= gamePanel.player.collideBox.y + gamePanel.player.collideBox.height &&
-           worldY >= gamePanel.player.collideBox.y - gamePanel.player.collideBox.height) {
-
-           return gamePanel.player.collideBox.width <= this.collideBox.x + this.collideBox.width;
-       }
-        return false;
-    }
-
     @Override
     public void loadSprites(String folderPath) {
         idleRight = new BufferedImage[6];

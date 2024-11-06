@@ -51,8 +51,6 @@ public class GamePanel extends JPanel implements Runnable {
     private int cameraX = 0;
     private int cameraY = 0;
 
-    JButton spawnButton;
-
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.black);

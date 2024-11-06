@@ -1,7 +1,4 @@
 package Main;
-
-import Entity.Player;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

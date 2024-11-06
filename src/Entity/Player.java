@@ -8,10 +8,7 @@ import java.awt.image.BufferedImage;
 
 
 public class Player extends Unit {
-    private Direction facingDirection;
-    private boolean isAttacking = false;
     public boolean hasBow = false;
-    private Equip equipWeapon = Equip.SWORD;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
@@ -21,10 +18,11 @@ public class Player extends Unit {
         this.worldY = gamePanel.TileSize * 45;
         solidAreaDefaultX = collideBox.x;
         solidAreaDefaultY = collideBox.y;
+        equipWeapon = Equip.SWORD;
         collideBox = new Rectangle(0,0,40,40);
         AttackhitsBox = new Rectangle(20,20, 40,60);
         damage = 30;
-        maxHealth = 100;
+        maxHealth = 1000;
         health = maxHealth;
         maxArrow = 32;
         arrow = 3;

@@ -26,10 +26,6 @@ public class Statue extends Unit {
         loadSprites("/Enemy");
     }
 
-    public void collideUnit(int index) {
-
-    }
-
     public void update() {
         super.update();
     }
@@ -67,6 +63,5 @@ public class Statue extends Unit {
         }
     }
 
-    public void damageReaction() {
-    }
+
 }
