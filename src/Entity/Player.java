@@ -22,12 +22,12 @@ public class Player extends Unit {
         collideBox = new Rectangle(0,0,40,40);
         AttackhitsBox = new Rectangle(20,20, 40,60);
         damage = 30;
-        maxHealth = 1000;
+        maxHealth = 100;
         health = maxHealth;
         maxArrow = 32;
         arrow = 3;
         potion = 0;
-        this.defaultSpeed = 20;
+        this.defaultSpeed = 4;
         this.speed = defaultSpeed;
         projectile = new Arrow(gamePanel);
 

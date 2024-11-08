@@ -86,7 +86,7 @@ public class EnemySword extends Unit {
 
             searchPath(goalCol, goalRow);
 
-            if (distanceToPlayer > 15) {
+            if (distanceToPlayer > 10) {
                 onPath = false;
             }
         }else {
@@ -111,7 +111,7 @@ public class EnemySword extends Unit {
                 actionCounter = 0;
             }
 
-            if (distanceToPlayer < 5) {
+            if (distanceToPlayer < 7) {
                 int i = new Random().nextInt(100) + 1;
                 if (i > 50) {
                     onPath = true;

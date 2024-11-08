@@ -22,7 +22,7 @@ public class StatueHitZone extends Unit {
         defaultSpeed = 0;
         damage = 15;
         speed = defaultSpeed;
-        maxHealth = 1000;
+        maxHealth = 600;
         health = maxHealth;
         statue = true;
 

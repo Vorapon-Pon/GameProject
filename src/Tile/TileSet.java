@@ -61,7 +61,6 @@ public class TileSet {
         getTile();
 
         loadMap("/Map/map001.txt");
-        //loadMap("/Map/map1.txt");
     }
 
     public void getTile() {

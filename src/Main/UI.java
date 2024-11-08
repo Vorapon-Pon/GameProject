@@ -4,7 +4,6 @@ import Entity.Unit;
 import Obj.Bow;
 import Obj.PlayerHealth;
 import Obj.Potion;
-import Obj.SuperObj;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

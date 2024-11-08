@@ -44,10 +44,13 @@ public class EnemyArcher extends Unit {
     }
 
     private void facePlayer() {
-        if (worldX < gamePanel.player.worldX) {
-            facingDirection = Direction.RIGHT;
-        } else {
-            facingDirection = Direction.LEFT;
+        int distance = getDistance(gamePanel.player);
+        if(distance < 5) {
+            if (worldX < gamePanel.player.worldX) {
+                facingDirection = Direction.RIGHT;
+            } else {
+                facingDirection = Direction.LEFT;
+            }
         }
     }
 
@@ -108,8 +111,8 @@ public class EnemyArcher extends Unit {
         int unitIndex = gamePanel.collisionCheck.checkUnit(this, gamePanel.enemy);
         collideUnit(unitIndex);
 
-        int distanceX = worldX - gamePanel.player.worldX;
-        int distanceY = worldY - gamePanel.player.worldY;
+        int distanceX = Math.abs(worldX - gamePanel.player.worldX);
+        int distanceY = Math.abs(worldY - gamePanel.player.worldY);
         int distanceToPlayer = (distanceX + distanceY) / gamePanel.TileSize;
 
         if (distanceToPlayer <= attackRange) {
@@ -122,7 +125,10 @@ public class EnemyArcher extends Unit {
                 isShooting = true;
             }
         } else {
+            onPath = false;
             isShooting = false; // Stop shooting if the player is out of attack range
+            chasing = false;
+            isAttacking = false;
         }
 
         actionCounter++;
@@ -138,7 +144,7 @@ public class EnemyArcher extends Unit {
 
             searchPath(goalCol, goalRow);
 
-            if(distanceToPlayer > 15) {
+            if(distanceToPlayer > 10) {
                 onPath = false;
             }
         }else {
@@ -152,10 +158,6 @@ public class EnemyArcher extends Unit {
                     behavior = "up";
                 }else if(i == 118) {
                     behavior = "down";
-                }else if(i == 119) {
-                    behavior = "right";
-                }else if(i == 120) {
-                    behavior = "left";
                 }else  {
                     behavior = "idle";
                 }

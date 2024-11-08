@@ -5,9 +5,7 @@ import Main.Direction;
 import Main.Equip;
 import Main.GamePanel;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Bow extends Unit {
     public Bow(GamePanel gamePanel) {
