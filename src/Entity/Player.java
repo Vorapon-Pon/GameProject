@@ -132,6 +132,14 @@ public class Player extends Unit {
             shotCooldown--;
         }
 
+        if (isInvincible) {
+            invincibleCounter++;
+            if (invincibleCounter >= 60) {
+                isInvincible = false;
+                invincibleCounter = 0;
+            }
+        }
+
         //attack
         if (keyHandler.attackPressed && !isAttacking) {
             attack();
@@ -230,14 +238,6 @@ public class Player extends Unit {
                     spriteIndex = 0;
                 }
                 spriteCounter = 0;
-            }
-
-            if (isInvincible) {
-                invincibleCounter++;
-                if (invincibleCounter >= 60) {
-                    isInvincible = false;
-                    invincibleCounter = 0;
-                }
             }
 
             if(health <= 0) {
