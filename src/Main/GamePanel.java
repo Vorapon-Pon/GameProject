@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this,keyHandler);
     public Asset asset = new Asset(this);
     public PathFinder pathFinder = new PathFinder(this);
-    public Unit[] obj = new Unit[40];
+    public Unit[] obj = new Unit[45];
     public Unit[] enemy = new Unit[40];
     public ArrayList<Unit> RandomEnemy = new ArrayList<>();
     public ArrayList<Unit> projectileList = new ArrayList<>();
