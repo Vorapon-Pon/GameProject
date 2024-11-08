@@ -178,6 +178,10 @@ public class Asset {
         gamePanel.obj[40] = new Potion(gamePanel);
         gamePanel.obj[40].worldX = gamePanel.TileSize * 41;
         gamePanel.obj[40].worldY = gamePanel.TileSize * 46;
+
+        gamePanel.obj[41] = new Potion(gamePanel);
+        gamePanel.obj[41].worldX = gamePanel.TileSize * 42;
+        gamePanel.obj[41].worldY = gamePanel.TileSize * 46;
     }
 
     public void setEnemy(){
@@ -263,28 +267,28 @@ public class Asset {
 
         if(gamePanel.enemy[21] == null && gamePanel.enemy[22] == null && gamePanel.enemy[23] == null) {
             gamePanel.enemy[21] = new EnemySword(gamePanel);
-            gamePanel.enemy[21].worldX = gamePanel.TileSize * 46; // enemy spawn
-            gamePanel.enemy[21].worldY = gamePanel.TileSize * 41;
+            gamePanel.enemy[21].worldX = gamePanel.TileSize * 42; // enemy spawn
+            gamePanel.enemy[21].worldY = gamePanel.TileSize * 39;
 
             gamePanel.enemy[22] = new EnemyArcher(gamePanel);
-            gamePanel.enemy[22].worldX = gamePanel.TileSize * 44 ; // enemy spawn
-            gamePanel.enemy[22].worldY = gamePanel.TileSize * 44;
+            gamePanel.enemy[22].worldX = gamePanel.TileSize * 42 ; // enemy spawn
+            gamePanel.enemy[22].worldY = gamePanel.TileSize * 41;
 
             gamePanel.enemy[23] = new EnemySword(gamePanel);
-            gamePanel.enemy[23].worldX = gamePanel.TileSize * 43 ; // enemy spawn
-            gamePanel.enemy[23].worldY = gamePanel.TileSize * 42;
+            gamePanel.enemy[23].worldX = gamePanel.TileSize * 42 ; // enemy spawn
+            gamePanel.enemy[23].worldY = gamePanel.TileSize * 43;
         }else {
             gamePanel.enemy[24] = new EnemyArcher(gamePanel);
-            gamePanel.enemy[24].worldX = gamePanel.TileSize * 45 ; // enemy spawn
-            gamePanel.enemy[24].worldY = gamePanel.TileSize * 42;
+            gamePanel.enemy[24].worldX = gamePanel.TileSize * 42 ; // enemy spawn
+            gamePanel.enemy[24].worldY = gamePanel.TileSize * 39;
 
             gamePanel.enemy[25] = new EnemyArcher(gamePanel);
-            gamePanel.enemy[25].worldX = gamePanel.TileSize * 43 ; // enemy spawn
-            gamePanel.enemy[25].worldY = gamePanel.TileSize * 42;
+            gamePanel.enemy[25].worldX = gamePanel.TileSize * 42 ; // enemy spawn
+            gamePanel.enemy[25].worldY = gamePanel.TileSize * 41;
 
             gamePanel.enemy[26] = new EnemySword(gamePanel);
             gamePanel.enemy[26].worldX = gamePanel.TileSize * 42; // enemy spawn
-            gamePanel.enemy[26].worldY = gamePanel.TileSize * 44;
+            gamePanel.enemy[26].worldY = gamePanel.TileSize * 43;
         }
     }
 
